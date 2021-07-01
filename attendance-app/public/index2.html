@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>Good Shepherd Christian Church</title>
+        <!-- Latest compiled and minified CSS -->
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+
+        <!-- jQuery library -->
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+        <!-- Popper JS -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+
+        <!-- Latest compiled JavaScript -->
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script> 
+    </head>
+    <body>
+        <div class="jumbotron jumbotron-fluid">
+            <div class="container">
+            <h1>Good Shepherd Christian Church</h1>
+        </div>
+
+        <div class="container-fluid pt-3 pb-3 my-3 bg-dark text-white">
+        <h1>Welcome</h1>
+        <h3>Attendance Tracking Tool</h3>
+        </div>
+        <div class="container-fluid pt-3 pb-3 my-3">
+        <p>Please sign-in with your first and last name.</p>
+        <!-- <div class="row">
+            <div class="col-sm-4">
+                <input type="signin" class="btn btn-primary" value="Sign-In">
+            </div>
+            <div class="col-sm-8">
+                 <div class="alert alert-success alert-dismissible">
+                <button type="button" class="close" data-dismiss="alert">&times;</button>
+                <strong>Success!</strong> You have signed-in into Good Shepherd Christian Church</a>.
+                </div>
+            </div>
+        </div> -->
+        <form action="/create" method="POST">
+        <div class="form-group">
+            <label for="firstname">First Name:</label>
+            <input type="text" class="form-control form-control-lg form-control-plaintext mb-3 border border-5" id="firstname" name="firstname" required>
+            <!-- <div id="myDIV">
+                <p>I am a paragraph.</p>
+                <div>I am a div element inside div.</div>
+                <button class="btn">I am a button</button>
+                <button class="btn btn-info">Another button</button>
+                <p>Another paragraph.</p>
+            </div> -->
+            <label for="lastname">Last Name:</label>
+            <input type="text" class="form-control form-control-lg form-control-plaintext mb-3 border border-5" id="lastname" name="lastname" required>
+            <label for="lastname">Email:</label>
+            <input type="text" class="form-control form-control-lg form-control-plaintext mb-3 border border-5" id="email" name="email" >
+            <!-- button for Modal popup -->
+            <button type="submit" class="btn btn-primary" data-toggle="modal" data-target="/successful">
+                SIGN-IN
+            </button>
+        </div>
+        </form>
+        <a href="/review" class="btn btn-info my-3" role="button">Review Tables</a>
+        </div>
+
+        </div>
+
+        
+        <!-- <div class="modal" id="mysigninModal">
+        <div class="modal-dialog">
+            <div class="modal-content">
+
+        
+            <div class="modal-header">
+                <h4 class="modal-title">Thank you!</h4>
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+            </div>
+
+            
+            <div class="modal-body">
+                You have now successfully signed in to Good Shepherd Christian Church.
+            </div>
+
+          
+            <div class="modal-footer">
+                <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+            </div>
+
+            </div>
+        </div>
+        </div>  -->
+
+        <!-- <div class="container-fluid pt-3 pb-3 my-3">                
+        <button data-toggle="collapse" data-target="#demotable">Show/Hide</button>
+        <div id="demotable" class="table-responsive collapse show"> 
+        <h2>Members Attending This Week</h2>
+        <p>This shows the members who have signed-in to attend Sunday service this week.</p>
+          <table class="table table-dark table-hover table-borderless">
+            <thead class="thead-light">
+                <tr>
+                    <th></th>
+                    <th>First Name</th>
+                    <th>Last Name</th>
+                    <th>Email Address</th>
+                    <th>Edit</th>
+                    <th>Delete</th>
+                </tr>
+            </thead>
+            <tbody>
+                <%
+                if(userData.length!=0){
+                var i=1;
+                userData.forEach(function(data){
+                %>
+                <tr>
+                    <td><%=i; %></td>
+                    <td><%=data.firstname %></td>
+                    <td><%=data.lastname %></td>
+                    <td><%=data.email %></td>
+                </tr>
+                <%  i++; }) %>
+                <% } else{ %>
+                    <tr>
+                        <td colspan="7">No Data Found</td>
+                    </tr>
+                <% } %>
+        </tbody>
+        </table>
+        </div>
+
+        </div> -->
+        <script>
+        $(document).ready(function(){
+        $("#myInput").on("keyup", function() {
+            var value = $(this).val().toLowerCase();
+            $("#myDIV *").filter(function() {
+            $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+            });
+        });
+        });
+        </script>
+    </body>
+</html>

@@ -1,0 +1,409 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>Good Shepherd Christian Church</title>
+        <!-- Latest compiled and minified CSS -->
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+
+        <!-- jQuery library -->
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+        <!-- Popper JS -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+
+        <!-- Latest compiled JavaScript -->
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script> 
+       
+    </head>
+    <body>
+        <div class="jumbotron jumbotron-fluid">
+            <div class="container">
+            <h1>Good Shepherd Christian Church</h1>
+            </div>
+        </div>
+
+        <div class="container-fluid pt-3 pb-3 bg-dark text-white mw-100">
+        <h1>Welcome</h1>
+        <h3>Sunday Service Attendance</h3>
+        <h4 id="currentweek"></h4>
+        </div>
+        <div class="container-fluid pt-3 pb-3 mr-5 border border-light w-100">
+         <!--<div>     
+            <button class="auth" id="signin-button" onclick="handleSignInClick()">Sign in</button>
+        </div>-->
+        <!-- <h5>Please sign-in with your first and last name.</h5> -->
+     
+        <!-- <div class="row">
+            <div class="col-sm-4">
+                <input type="signin" class="btn btn-primary" value="Sign-In">
+            </div>
+            <div class="col-sm-8">
+                 <div class="alert alert-success alert-dismissible">
+                <button type="button" class="close" data-dismiss="alert">&times;</button>
+                <strong>Success!</strong> You have signed-in into Good Shepherd Christian Church</a>.
+                </div>
+            </div>
+        </div> -->
+        <form id="signinform" action="/create" method="POST">
+
+        <div class="form-group">
+            <div id="adult-todo-list-example" class="container-fluid my-3">
+            <h4>Enter Adult Name:</h4>
+            <!-- <label for="adult-firstname">First Name:</label> -->
+            <!-- <input class="form-control form-control-lg form-control-plaintext mb-3 border border-5"
+            v-model="adultFirstName"
+            id="adultadditionals" name="adultadditionals"
+            placeholder="Enter First Name"
+            > -->
+            <ul style="list-style-type: none; padding: 0; margin: 0;" >
+            <li
+            is="adult-todo-item"
+            v-for="(todo, index) in todos"
+            v-bind:key="todo.id"
+            v-bind:title="todo.adultfirst"
+            v-on:remove="todos.splice(index, 1)"
+            ></li>
+            </ul>
+            <!-- <label for="firstname">First Name:</label>
+            <input type="text" class="form-control form-control-lg form-control-plaintext mb-3 border border-5 w-100" id="firstname" name="firstname" required> -->
+            <!-- <label for="lastname">Last Name:</label>
+            <input type="text" class="form-control form-control-lg form-control-plaintext mb-3 border border-5 w-100" id="lastname" name="lastname" required> -->
+            <!-- <label for="email">Email:</label>
+            <input type="text" class="form-control form-control-lg form-control-plaintext mb-3 border border-5 w-100" id="email" name="email" > -->
+            <!-- <label for="lastname">Phone:</label>
+            <input type="text" class="form-control form-control-lg form-control-plaintext mb-3 border border-5" id="phone" name="phone" > -->
+            <!-- button for Modal popup -->
+            <br/>
+            <button class="btn btn-info" v-on:click.prevent="adultaddNewTodo"id="adulttodoaddbutton">Add Another</button>
+            <br />
+            <br />
+            <!-- <h5 class="ml-3">Adults Attending:</h5> -->
+             
+            </div>
+
+
+            <div id="child-todo-list-example" class="container-fluid my-3">
+        <!-- <div id="todo-list-example" class="container-fluid my-3"> -->
+            <h4>Enter Child Name:</h4>
+                <!-- <form id="todoform" v-on:submit.prevent="addNewTodo"> -->
+                    <!-- <label for="new-todo">Full Name:</label>
+                    <input class="form-control form-control-lg form-control-plaintext mb-3 border border-5"
+                    v-model="newTodoText"
+                    id="new-todo"
+                    placeholder="Enter First and Last Name"
+                    > -->
+            <!-- <label for="child-firstname">First Name:</label> -->
+            <!-- <input class="form-control form-control-lg form-control-plaintext mb-3 border border-5"
+            v-model="childFirstName"
+            id="childadditionals" name="childadditionals"
+            placeholder="Enter First Name"
+            > -->
+                    <!-- <label for="new-lastname">Last Name:</label>
+                    <input class="form-control form-control-lg form-control-plaintext mb-3 border border-5"
+                    v-model="newLastName"
+                    id="new-lastname"
+                    placeholder="Enter Last Name"
+                    > -->
+                    <!-- <input class="form-check-input mb-3 ml-1 border border-5" type="checkbox" value="" id="foodCheckDefault" v-model="foodRes" true-value="Food reserved." false-value="No food reserved."id="new-foodRes">
+                    <label class="ml-4 mb-3" for="foodCheckDefault">
+                        Yes, please reserve food for me.
+                    </label> -->
+           
+            <ul style="list-style-type: none; padding: 0; margin: 0;" >
+            <li
+            is="child-todo-item"
+            v-for="(todo, index) in todos"
+            v-bind:key="todo.id"
+            v-bind:title="todo.childfirst"
+            v-on:remove="todos.splice(index, 1)"
+            ></li>
+            </ul>
+            <br/>
+            <button class="btn btn-info" v-on:click.prevent="childaddNewTodo"id="childtodoaddbutton">Add Another</button>
+        <!-- </form> -->
+            <br />
+            <br />
+            <!-- <h5 class="ml-3">Children Attending:</h5> -->
+         
+            </div>
+        
+            <!-- <div id="food-reservations" class="container-fluid my-3">
+            <h5>Food Reservation (optional) - Enter item quantity:</h5>
+            <label id="item1label" for="item1num" class="mb-1">$5 - Vietnamese Ham Sandwich:</label>
+            <input id="item1num" type="number" form="signinform" name="fooditem1" min="0" placeholder="0" class="p-1 m-1" style="width: 20%;"><br />
+            <label id="item2label" for="item1num" class="mb-1">$5 - Vietnamese Shrimp Roll:</label>
+            <input id="item2num" type="number" form="signinform" name="fooditem2" min="0" placeholder="0" class="p-1 m-1" style="width: 20%;"><br />
+            <label id="item3label" for="item1num" class="mb-1">$5 - Vietnamese Grilled Pork Vermicelli Salad:</label>
+            <input id="item3num" type="number" form="signinform" name="fooditem3" min="0" placeholder="0" class="p-1 m-1" style="width: 20%;"><br />
+            <!-- <label id="item4label" for="item1num" class="mb-1">Food Item 4:</label>
+            <input id="item4num" type="number" form="signinform" name="fooditem4" min="0" class="p-1 m-1" style="width: 20%;"><br />
+            <label id="item5label" for="item1num" class="mb-1">Food Item 5:</label>
+            <input id="item5num" type="number" form="signinform" name="fooditem5" min="0" class="p-1 m-1" style="width: 20%;"><br /> -->
+            <!-- </div>
+            <br />
+            <br /> --> 
+            <button type="submit" class="btn btn-primary btn-lg ml-3" data-toggle="modal" data-target="/success">
+                SUBMIT
+            </button>
+            </div>
+        </form>
+
+        
+        <!-- <a href="/review" class="btn btn-info my-3" role="button">Review Tables</a> -->
+        </div>
+
+        <script src="https://unpkg.com/vue"></script>
+        <script>
+            function getCurrentWeek() {
+                    //var d = new Date(data.date); //d is the date of the entry
+                    var a = new Date(); var b = new Date();
+                    //console.log("d=" + d);
+                    // get the upcoming sunday. 604800000 ms per week
+                    if(a.getDay() != 0){
+                        a.setDate(a.getDate() - a.getDay()); 
+                        a.setTime(a.getTime() + 604800000);
+                    }
+                    a.setHours(23);a.setMinutes(59);
+                    var weekdisplay = a.toLocaleDateString();
+                    document.getElementById("currentweek").innerHTML = "Week of " + weekdisplay;
+                    //console.log("a=" + a);
+                    //b.setTime(a.getTime() - 604800000); // - milliseconds in a week
+                    //console.log("b=" + b);
+                    //if(d.getTime() <= a.getTime() && d.getTime() >= b.getTime())
+            }
+        </script>
+        <script>
+
+    //    Vue.component('adult-todo-item', {
+    //         template: '\
+    //             <li>\
+    //             <input class="form-control form-control-plaintext" type="text" form="signinform" id="adultadditionals" name="adultadditionals" v-bind:value="title">\
+    //             <button class="btn btn-secondary" v-on:click="$emit(\'remove\')">Remove</button>\
+    //             </li>\
+    //         ',
+    //         props: ['title']
+    //         })
+
+    Vue.component('adult-todo-item', {
+            template: '\
+                <li>\
+                <input class="form-control form-control-plaintext mb-3 mt-3 border border-5" type="text" form="signinform" id="adultadditionals" name="adultadditionals" placeholder="Enter First Name" >\
+                </li>\
+            ',
+            props: ['title']
+            })
+    //    Vue.component('child-todo-item', {
+    //         template: '\
+    //             <li>\
+    //             <input class="form-control form-control-plaintext" type="text" form="signinform" id="childadditionals" name="childadditionals" v-bind:value="title">\
+    //             <button class="btn btn-secondary" v-on:click="$emit(\'remove\')">Remove</button>\
+    //             </li>\
+    //         ',
+    //         props: ['title']
+    //         })
+
+    Vue.component('child-todo-item', {
+            template: '\
+                <li>\
+                <input class="form-control form-control-plaintext mb-3 mt-3 border border-5"  type="text" form="signinform" id="childadditionals" name="childadditionals" placeholder="Enter First Name" >\
+                </li>\
+            ',
+            props: ['title']
+            })
+            new Vue({
+            el: '#adult-todo-list-example',
+            data: {
+                newTodoText: '',
+                todos: [
+                 {
+                     id: 1,
+                     title: ''
+                // },
+                // {
+                //     id: 2,
+                //     title: 'Take out the trash',
+                // },
+                // {
+                //     id: 3,
+                //     title: 'Mow the lawn'
+                 }
+                ],
+                nextTodoId: 2
+            },
+            methods: {
+                adultaddNewTodo: function () {
+                this.todos.push({
+                    id: this.nextTodoId++,
+                    title: this.newTodoText,
+                    adultfirst: this.adultFirstName,
+                })
+                this.newTodoText = ''
+                }
+            }
+            })
+
+            new Vue({
+            el: '#child-todo-list-example',
+            data: {
+                newTodoText: '',
+                todos: [
+                 {
+                     id: 1,
+                     title: '',
+                 }
+                // {
+                //     id: 2,
+                //     title: 'Take out the trash',
+                // },
+                // {
+                //     id: 3,
+                //     title: 'Mow the lawn'
+                // }
+                ],
+                nextTodoId: 2
+            },
+            methods: {
+                childaddNewTodo: function (event) {
+                this.todos.push({
+                    id: this.nextTodoId++,
+                    title: this.newTodoText,
+                    childfirst: this.childFirstName
+                })
+                this.newTodoText = '';
+                }
+            }
+            })
+
+</script>
+<script>
+    getCurrentWeek();
+        //  function signinclick(){
+        //     var form = document.getElementById('signinform');
+        //     var formdata = new FormData(form);
+        //     formdata.append('additionalsArray',formdata.getAll('additionals'));
+        //     fetch('/create', {
+        //     method: 'POST',
+        //     body: formdata
+        //     })
+        //     .then(response=>response.json())
+        //     .then(json => console.log(json))
+        // }
+</script>
+        <!-- <div class="modal" id="mysigninModal">
+        <div class="modal-dialog">
+            <div class="modal-content">
+
+        
+            <div class="modal-header">
+                <h4 class="modal-title">Thank you!</h4>
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+            </div>
+
+            
+            <div class="modal-body">
+                You have now successfully signed in to Good Shepherd Christian Church.
+            </div>
+
+          
+            <div class="modal-footer">
+                <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+            </div>
+
+            </div>
+        </div>
+        </div>  -->
+
+        <!-- <div class="container-fluid pt-3 pb-3 my-3">                
+        <button data-toggle="collapse" data-target="#demotable">Show/Hide</button>
+        <div id="demotable" class="table-responsive collapse show"> 
+        <h2>Members Attending This Week</h2>
+        <p>This shows the members who have signed-in to attend Sunday service this week.</p>
+          <table class="table table-dark table-hover table-borderless">
+            <thead class="thead-light">
+                <tr>
+                    <th></th>
+                    <th>First Name</th>
+                    <th>Last Name</th>
+                    <th>Email Address</th>
+                    <th>Edit</th>
+                    <th>Delete</th>
+                </tr>
+            </thead>
+            <tbody>
+                <%
+                if(userData.length!=0){
+                var i=1;
+                userData.forEach(function(data){
+                %>
+                <tr>
+                    <td><%=i; %></td>
+                    <td><%=data.firstname %></td>
+                    <td><%=data.lastname %></td>
+                    <td><%=data.email %></td>
+                </tr>
+                <%  i++; }) %>
+                <% } else{ %>
+                    <tr>
+                        <td colspan="7">No Data Found</td>
+                    </tr>
+                <% } %>
+        </tbody>
+        </table>
+        </div>
+
+        </div> -->
+        <!-- <script>
+        function initClient() {
+        var API_KEY = 'fBkumK0bCqvhByfCFhth6pPk';  // TODO: Update placeholder with desired API key.
+        //var CLIENT_ID = 104970360415834018819;
+        //serviceaccount@gscc-sunday-school.iam.gserviceaccount.com
+        var CLIENT_ID = '49087018313-9l9cov63ip68b2pj968dvlljb1gu3288.apps.googleusercontent.com';  // TODO: Update placeholder with desired client ID.
+
+        // TODO: Authorize using one of the following scopes:
+        //   'https://www.googleapis.com/auth/drive'
+        //   'https://www.googleapis.com/auth/drive.file'
+        //   'https://www.googleapis.com/auth/drive.readonly'
+        //   'https://www.googleapis.com/auth/spreadsheets'
+        //   'https://www.googleapis.com/auth/spreadsheets.readonly'
+        //var SCOPE = 'https://www.googleapis.com/auth/spreadsheets';
+        //var SCOPE = 'https://www.googleapis.com/auth/drive.file';
+
+        gapi.client.init({
+            'apiKey': API_KEY,
+            'clientId': CLIENT_ID
+            //'scope': SCOPE,
+        // 'discoveryDocs': ['https://sheets.googleapis.com/$discovery/rest?version=v4'],
+        }).then(function() {
+            gapi.auth2.getAuthInstance().isSignedIn.listen(updateSignInStatus);
+            updateSignInStatus(gapi.auth2.getAuthInstance().isSignedIn.get());
+            makeApiCall("read");
+        });
+        }
+
+        function handleClientLoad() {
+        gapi.load('client:auth2', initClient);
+        }
+
+        var r;
+        function updateSignInStatus(isSignedIn) {
+        if (isSignedIn) {
+            r = makeApiCall();
+        }
+        }
+
+        function handleSignInClick(event) {
+        gapi.auth2.getAuthInstance().signIn();
+        }
+
+        function handleSignOutClick(event) {
+        gapi.auth2.getAuthInstance().signOut();
+        }
+    </script>
+    <script async defer src="https://apis.google.com/js/api.js"
+        onload="this.onload=function(){};handleClientLoad();"
+        onreadystatechange="if (this.readyState === 'complete') this.onload()">
+    </script> -->
+    </body>
+</html>

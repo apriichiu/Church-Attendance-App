@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>Good Shepherd Christian Church</title>
+        <!-- Latest compiled and minified CSS -->
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+
+        <!-- jQuery library -->
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+        <!-- Popper JS -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+
+        <!-- Latest compiled JavaScript -->
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script> 
+    </head>
+    <body>
+        <div class="jumbotron jumbotron-fluid">
+            <div class="container">
+            <h1>Review Tables</h1>
+            <br>
+            <a href="/" class="btn btn-info my-3" role="button">Return to Sign-In</a>
+
+         
+
+
+        <div class="container-fluid pt-3 pb-3 my-3">                
+        <!-- <button data-toggle="collapse" data-target="#demotable">Show/Hide</button> -->
+
+        <!-- <img src="images/gscross.jpg" class="mx-auto d-block img-fluid" alt="cross"> -->
+        <div id="demotable" class="table-responsive collapse show"> 
+        <h2>All Members Attending This Week</h2>
+        <p>This shows the members who have signed-in to attend Sunday service this week.</p>
+          <table class="table table-dark table-hover table-borderless text-nowrap">
+            <thead class="thead-light">
+                <tr>
+                    <th></th>
+                    <th>First Name</th>
+                    <th>Date</th>
+                </tr>
+            </thead>
+            </tbody>
+                <%
+                if(userData[0].length!=0 ){
+                var i=1;
+                userData[0].forEach(function(data){
+                    var d = new Date(data.date); //d is the date of the entry
+                    var a = new Date(); var b = new Date();
+                    //console.log("d=" + d);
+                    // get the upcoming sunday. 604800000 ms per week
+                    if(a.getDay() != 0){
+                        a.setDate(a.getDate() - a.getDay()); 
+                        a.setTime(a.getTime() + 604800000);
+                    }
+                    a.setHours(23);a.setMinutes(59);
+                    //console.log("a=" + a);
+                    b.setTime(a.getTime() - 604800000); // - milliseconds in a week
+                    //console.log("b=" + b);
+                    if(d.getTime() <= a.getTime() && d.getTime() >= b.getTime()){
+                %>
+                <tr>
+                    <td><%=i; %></td>
+                    <td><%=data.firstName %></td>
+                    <td><%=data.date %></td>
+                </tr>
+                <%  i++; }}) %>
+                <% } else{ %>
+                    <tr>
+                        <td colspan="7">No Data Found</td>
+                    </tr>
+                <% } %>
+        </tbody>
+        </table>
+        </div>
+
+
+        <div id="demotable" class="table-responsive collapse show"> 
+        <h2>All Adult Members Attending This Week</h2>
+        <p>This shows the adult members who have signed-in to attend Sunday service this week.</p>
+          <table class="table table-dark table-hover table-borderless text-nowrap">
+            <thead class="thead-light">
+                <tr>
+                    <th></th>
+                    <th>First Name</th>
+                    <th>Date</th>
+                </tr>
+            </thead>
+            </tbody>
+                <%
+                if(userData[1].length!=0 ){
+                var i=1;
+                userData[1].forEach(function(data){
+                    var d = new Date(data.date); //d is the date of the entry
+                    var a = new Date(); var b = new Date();
+                    //console.log("d=" + d);
+                    // get the upcoming sunday. 604800000 ms per week
+                    if(a.getDay() != 0){
+                        a.setDate(a.getDate() - a.getDay()); 
+                        a.setTime(a.getTime() + 604800000);
+                    }
+                    a.setHours(23);a.setMinutes(59);
+                    //console.log("a=" + a);
+                    b.setTime(a.getTime() - 604800000); // - milliseconds in a week
+                    //console.log("b=" + b);
+                    if(d.getTime() <= a.getTime() && d.getTime() >= b.getTime()){
+                %>
+                <tr>
+                    <td><%=i; %></td>
+                    <td><%=data.firstName %></td>
+                    <td><%=data.date %></td>
+                </tr>
+                <%  i++; }}) %>
+                <% } else{ %>
+                    <tr>
+                        <td colspan="7">No Data Found</td>
+                    </tr>
+                <% } %>
+        </tbody>
+        </table>
+        </div>
+
+
+        <div id="demotable" class="table-responsive collapse show"> 
+        <h2>All Children Members Attending This Week</h2>
+        <p>This shows the children members who have signed-in to attend Sunday service this week.</p>
+          <table class="table table-dark table-hover table-borderless text-nowrap">
+            <thead class="thead-light">
+                <tr>
+                    <th></th>
+                    <th>First Name</th>
+                    <th>Date</th>
+                </tr>
+            </thead>
+            </tbody>
+                <%
+                if(userData[2].length!=0 ){
+                var i=1;
+                userData[2].forEach(function(data){
+                    var d = new Date(data.date); //d is the date of the entry
+                    var a = new Date(); var b = new Date();
+                    //console.log("d=" + d);
+                    // get the upcoming sunday. 604800000 ms per week
+                    if(a.getDay() != 0){
+                        a.setDate(a.getDate() - a.getDay()); 
+                        a.setTime(a.getTime() + 604800000);
+                    }
+                    a.setHours(23);a.setMinutes(59);
+                    //console.log("a=" + a);
+                    b.setTime(a.getTime() - 604800000); // - milliseconds in a week
+                    //console.log("b=" + b);
+                    if(d.getTime() <= a.getTime() && d.getTime() >= b.getTime()){
+                %>
+                <tr>
+                    <td><%=i; %></td>
+                    <td><%=data.firstName %></td>
+                    <td><%=data.date %></td>
+                </tr>
+                <%  i++; }}) %>
+                <% } else{ %>
+                    <tr>
+                        <td colspan="7">No Data Found</td>
+                    </tr>
+                <% } %>
+        </tbody>
+        </table>
+        </div>
+
+        </div>
+        </div>
+    </body>
+</html>
